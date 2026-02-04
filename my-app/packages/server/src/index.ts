@@ -6,6 +6,8 @@ import { getDb, todos } from "@repo/db";
 import { eq } from 'drizzle-orm'
 const app = new Hono().basePath("/api")
 app.use('*', logger())
+
+
 // app.use(
 //   cors({
 //     origin: ['https://supabase-my-app-iota.vercel.app', 'http://localhost:3000',],
