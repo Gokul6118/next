@@ -2,7 +2,7 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
-import { db, todos } from '@repo/db'
+import { getDb, todos } from "@repo/db";
 import { eq } from 'drizzle-orm'
 const app = new Hono().basePath("/api")
 app.use('*', logger())
@@ -13,6 +13,8 @@ app.use('*', logger())
 //     allowMethods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 //   })
 // )
+
+const db = getDb();
 
 
 app.get('/test', (c) => c.json({ ok: true }))

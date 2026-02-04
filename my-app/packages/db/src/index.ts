@@ -2,19 +2,33 @@ import pkg from "pg";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { todos } from "./schema";
 
-const { Pool } = pkg; 
+const { Pool } = pkg;
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL missing");
+
+let pool: pkg.Pool | null = null;
+let db: ReturnType<typeof drizzle> | null = null;
+
+
+
+export function getDb() {
+  if (db) return db;
+
+  const DATABASE_URL = process.env.DATABASE_URL;
+
+  if (!DATABASE_URL) {
+    throw new Error("DATABASE_URL is missing");
+  }
+
+  pool = new Pool({
+    connectionString: DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  db = drizzle(pool);
+
+  return db;
 }
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
-
-export const db = drizzle(pool);
 export { todos };
