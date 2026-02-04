@@ -14,14 +14,14 @@
     "dist"
   ],
   "scripts": {
-    "build": "pnpm dlx tsup src/index.ts --format esm --dts --tsconfig tsconfig.json --external drizzle-orm"
-
+    "build": "tsc"
   },
   "dependencies": {
     "drizzle-orm": "^0.45.1",
     "pg": "^8.18.0"
   },
   "devDependencies": {
-    "@types/pg": "^8.16.0"
+    "@types/pg": "^8.16.0",
+    "tsup": "^8.5.1"
   }
 }
