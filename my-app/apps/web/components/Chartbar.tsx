@@ -59,8 +59,9 @@ export function Chartbar() {
 
 
   const monthMap: Record<string, number> = {};
-   const normalizeDate = (value: string) =>
-      new Date(value.split("T")[0]);
+   const normalizeDate = (value: string) =>{
+      return new Date(value.split("T")[0]!);
+}
   items.forEach(task => {
  
     const d = normalizeDate(task.date);
