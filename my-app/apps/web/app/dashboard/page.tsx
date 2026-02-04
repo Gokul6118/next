@@ -1,5 +1,5 @@
 "use client"
-import {ChartBar} from './../../components/Chartbar'
+import {Chartbar} from './../../components/Chartbar'
 
 
 
@@ -9,9 +9,9 @@ export default function DashboardPage() {
     
 
 
-    <ChartBar>
+    <Chartbar>
 
-    </ChartBar>
+    </Chartbar>
     
     
     
